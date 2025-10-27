@@ -23,6 +23,7 @@ const Settings = () => {
   const [importFile, setImportFile] = useState(null);
   const [showPasswordModal, setShowPasswordModal] = useState(false);
   const [previewImage, setPreviewImage] = useState(null); // For image preview
+  const [showFullScreen, setShowFullScreen] = useState(false); // For full-screen image
 
   // Handle profile updates
   const handleProfileChange = (e) => {
@@ -115,6 +116,11 @@ const Settings = () => {
     }
   };
 
+  // Handle full-screen image toggle
+  const handleFullScreenToggle = () => {
+    setShowFullScreen(!showFullScreen);
+  };
+
   return (
     <div className="bg-gray-800 p-6 rounded-2xl shadow-lg min-h-screen">
       <h2 className="text-2xl font-semibold text-white mb-6">Settings</h2>
@@ -129,7 +135,8 @@ const Settings = () => {
               <img
                 src={previewImage || profile.profilePicture}
                 alt="Profile"
-                className="w-24 h-24 rounded-full object-cover border-4 border-gray-700"
+                className="w-24 h-24 rounded-full object-cover border-4 border-gray-700 cursor-pointer"
+                onClick={handleFullScreenToggle}
               />
               <label
                 htmlFor="profilePictureUpload"
@@ -189,6 +196,25 @@ const Settings = () => {
           </button>
         </div>
       </div>
+
+      {/* Full-Screen Image Modal */}
+      {showFullScreen && (
+        <div className="fixed inset-0 bg-gray-900 bg-opacity-75 flex items-center justify-center z-50">
+          <div className="relative">
+            <img
+              src={previewImage || profile.profilePicture}
+              alt="Full-Screen Profile"
+              className="max-w-full max-h-full object-contain"
+            />
+            <button
+              onClick={handleFullScreenToggle}
+              className="absolute top-4 right-4 px-4 py-2 bg-indigo-600 text-white rounded-md hover:bg-indigo-700 focus:outline-none focus:ring-2 focus:ring-indigo-500"
+            >
+              Close
+            </button>
+          </div>
+        </div>
+      )}
 
       {/* Theme Customization */}
       <div className="mb-8">
