@@ -146,30 +146,39 @@ const Settings = () => {
               </label>
             </div>
             <div className="flex-1 space-y-2">
-              <input
-                type="text"
-                name="fullName"
-                value={profile.fullName}
-                onChange={handleProfileChange}
-                className="w-64 p-2 bg-gray-700 text-white border border-gray-600 rounded-md focus:outline-none focus:ring-indigo-500"
-                placeholder="Full Name"
-              />
-              <input
-                type="email"
-                name="email"
-                value={profile.email}
-                onChange={handleProfileChange}
-                className="w-64 p-2 bg-gray-700 text-white border border-gray-600 rounded-md focus:outline-none focus:ring-indigo-500"
-                placeholder="Email"
-              />
-              <input
-                type="text"
-                name="username"
-                value={profile.username}
-                onChange={handleProfileChange}
-                className="w-64 p-2 bg-gray-700 text-white border border-gray-600 rounded-md focus:outline-none focus:ring-indigo-500"
-                placeholder="Username"
-              />
+              <div className="flex items-center space-x-4">
+                <label className="text-gray-400 w-24">Full Name:</label>
+                <input
+                  type="text"
+                  name="fullName"
+                  value={profile.fullName}
+                  onChange={handleProfileChange}
+                  className="w-64 p-2 bg-gray-700 text-white border border-gray-600 rounded-md focus:outline-none focus:ring-indigo-500"
+                  placeholder="Full Name"
+                />
+              </div>
+              <div className="flex items-center space-x-4">
+                <label className="text-gray-400 w-24">Email:</label>
+                <input
+                  type="email"
+                  name="email"
+                  value={profile.email}
+                  onChange={handleProfileChange}
+                  className="w-64 p-2 bg-gray-700 text-white border border-gray-600 rounded-md focus:outline-none focus:ring-indigo-500"
+                  placeholder="Email"
+                />
+              </div>
+              <div className="flex items-center space-x-4">
+                <label className="text-gray-400 w-24">Username:</label>
+                <input
+                  type="text"
+                  name="username"
+                  value={profile.username}
+                  onChange={handleProfileChange}
+                  className="w-64 p-2 bg-gray-700 text-white border border-gray-600 rounded-md focus:outline-none focus:ring-indigo-500"
+                  placeholder="Username"
+                />
+              </div>
             </div>
           </div>
           <button
@@ -184,15 +193,18 @@ const Settings = () => {
       {/* Theme Customization */}
       <div className="mb-8">
         <h3 className="text-lg font-medium text-gray-300 mb-4">Appearance</h3>
-        <select
-          value={theme}
-          onChange={handleThemeChange}
-          className="w-64 p-2 bg-gray-700 text-white border border-gray-600 rounded-md focus:outline-none focus:ring-indigo-500"
-        >
-          <option value="dark">Dark Theme</option>
-          <option value="light">Light Theme</option>
-          <option value="system">System Default</option>
-        </select>
+        <div className="flex items-center space-x-4">
+          <label className="text-gray-400 w-24">Theme:</label>
+          <select
+            value={theme}
+            onChange={handleThemeChange}
+            className="w-64 p-2 bg-gray-700 text-white border border-gray-600 rounded-md focus:outline-none focus:ring-indigo-500"
+          >
+            <option value="dark">Dark Theme</option>
+            <option value="light">Light Theme</option>
+            <option value="system">System Default</option>
+          </select>
+        </div>
       </div>
 
       {/* Notification Settings */}
@@ -276,12 +288,15 @@ const Settings = () => {
               Download Exported Data
             </a>
           )}
-          <input
-            type="file"
-            accept=".json"
-            onChange={handleImport}
-            className="w-64 p-2 bg-gray-700 text-white border border-gray-600 rounded-md focus:outline-none focus:ring-indigo-500"
-          />
+          <div className="flex items-center space-x-4">
+            <label className="text-gray-400 w-24">Import:</label>
+            <input
+              type="file"
+              accept=".json"
+              onChange={handleImport}
+              className="w-64 p-2 bg-gray-700 text-white border border-gray-600 rounded-md focus:outline-none focus:ring-indigo-500"
+            />
+          </div>
         </div>
       </div>
 
@@ -290,22 +305,28 @@ const Settings = () => {
         <div className="fixed inset-0 bg-gray-900 bg-opacity-50 flex items-center justify-center z-50">
           <div className="bg-gray-800 p-6 rounded-2xl shadow-lg w-full max-w-md">
             <h3 className="text-xl font-bold text-white mb-4">Change Password</h3>
-            <input
-              type="password"
-              name="password"
-              value={security.password}
-              onChange={handleSecurityChange}
-              className="w-64 p-2 mb-2 bg-gray-700 text-white border border-gray-600 rounded-md focus:outline-none focus:ring-indigo-500"
-              placeholder="New Password"
-            />
-            <input
-              type="password"
-              name="confirmPassword"
-              value={security.confirmPassword}
-              onChange={handleSecurityChange}
-              className="w-64 p-2 mb-4 bg-gray-700 text-white border border-gray-600 rounded-md focus:outline-none focus:ring-indigo-500"
-              placeholder="Confirm Password"
-            />
+            <div className="flex items-center space-x-4 mb-2">
+              <label className="text-gray-400 w-24">New Password:</label>
+              <input
+                type="password"
+                name="password"
+                value={security.password}
+                onChange={handleSecurityChange}
+                className="w-64 p-2 bg-gray-700 text-white border border-gray-600 rounded-md focus:outline-none focus:ring-indigo-500"
+                placeholder="New Password"
+              />
+            </div>
+            <div className="flex items-center space-x-4 mb-4">
+              <label className="text-gray-400 w-24">Confirm:</label>
+              <input
+                type="password"
+                name="confirmPassword"
+                value={security.confirmPassword}
+                onChange={handleSecurityChange}
+                className="w-64 p-2 bg-gray-700 text-white border border-gray-600 rounded-md focus:outline-none focus:ring-indigo-500"
+                placeholder="Confirm Password"
+              />
+            </div>
             <div className="flex justify-end space-x-4">
               <button
                 onClick={() => setShowPasswordModal(false)}
