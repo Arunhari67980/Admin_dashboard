@@ -6,6 +6,7 @@ const Settings = () => {
     username: 'admin',
     email: 'admin@example.com',
     fullName: 'Admin User',
+    profilePicture: 'https://via.placeholder.com/150', // Default placeholder image
   });
   const [theme, setTheme] = useState('dark');
   const [notifications, setNotifications] = useState({
@@ -21,16 +22,29 @@ const Settings = () => {
   const [exportData, setExportData] = useState(null);
   const [importFile, setImportFile] = useState(null);
   const [showPasswordModal, setShowPasswordModal] = useState(false);
+  const [previewImage, setPreviewImage] = useState(null); // For image preview
 
   // Handle profile updates
   const handleProfileChange = (e) => {
     setProfile({ ...profile, [e.target.name]: e.target.value });
   };
 
+  // Handle profile picture upload
+  const handleProfilePictureChange = (e) => {
+    const file = e.target.files[0];
+    if (file) {
+      const reader = new FileReader();
+      reader.onloadend = () => {
+        setProfile({ ...profile, profilePicture: reader.result });
+        setPreviewImage(reader.result); // Set preview
+      };
+      reader.readAsDataURL(file);
+    }
+  };
+
   // Handle theme change
   const handleThemeChange = (e) => {
     setTheme(e.target.value);
-    // Simulate theme application (in a real app, update CSS or context)
     console.log(`Theme changed to: ${e.target.value}`);
   };
 
@@ -105,34 +119,59 @@ const Settings = () => {
     <div className="bg-gray-800 p-6 rounded-2xl shadow-lg min-h-screen">
       <h2 className="text-2xl font-semibold text-white mb-6">Settings</h2>
 
-      {/* Profile Section */}
+      {/* Profile Section with Profile Picture */}
       <div className="mb-8">
         <h3 className="text-lg font-medium text-gray-300 mb-4">Profile</h3>
         <div className="space-y-4">
-          <input
-            type="text"
-            name="fullName"
-            value={profile.fullName}
-            onChange={handleProfileChange}
-            className="w-full p-2 bg-gray-700 text-white border border-gray-600 rounded-md focus:outline-none focus:ring-indigo-500"
-            placeholder="Full Name"
-          />
-          <input
-            type="email"
-            name="email"
-            value={profile.email}
-            onChange={handleProfileChange}
-            className="w-full p-2 bg-gray-700 text-white border border-gray-600 rounded-md focus:outline-none focus:ring-indigo-500"
-            placeholder="Email"
-          />
-          <input
-            type="text"
-            name="username"
-            value={profile.username}
-            onChange={handleProfileChange}
-            className="w-full p-2 bg-gray-700 text-white border border-gray-600 rounded-md focus:outline-none focus:ring-indigo-500"
-            placeholder="Username"
-          />
+          {/* Profile Picture */}
+          <div className="flex items-center space-x-4">
+            <div className="relative">
+              <img
+                src={previewImage || profile.profilePicture}
+                alt="Profile"
+                className="w-24 h-24 rounded-full object-cover border-4 border-gray-700"
+              />
+              <label
+                htmlFor="profilePictureUpload"
+                className="absolute bottom-0 right-0 bg-indigo-600 text-white p-2 rounded-full cursor-pointer hover:bg-indigo-700 focus:outline-none focus:ring-2 focus:ring-indigo-500"
+              >
+                ✏️
+                <input
+                  id="profilePictureUpload"
+                  type="file"
+                  accept="image/*"
+                  onChange={handleProfilePictureChange}
+                  className="hidden"
+                />
+              </label>
+            </div>
+            <div className="flex-1">
+              <input
+                type="text"
+                name="fullName"
+                value={profile.fullName}
+                onChange={handleProfileChange}
+                className="w-full p-2 bg-gray-700 text-white border border-gray-600 rounded-md focus:outline-none focus:ring-indigo-500"
+                placeholder="Full Name"
+              />
+              <input
+                type="email"
+                name="email"
+                value={profile.email}
+                onChange={handleProfileChange}
+                className="w-full p-2 bg-gray-700 text-white border border-gray-600 rounded-md focus:outline-none focus:ring-indigo-500 mt-2"
+                placeholder="Email"
+              />
+              <input
+                type="text"
+                name="username"
+                value={profile.username}
+                onChange={handleProfileChange}
+                className="w-full p-2 bg-gray-700 text-white border border-gray-600 rounded-md focus:outline-none focus:ring-indigo-500 mt-2"
+                placeholder="Username"
+              />
+            </div>
+          </div>
           <button
             onClick={() => console.log('Profile saved:', profile)}
             className="mt-2 px-4 py-2 bg-indigo-600 text-white rounded-md hover:bg-indigo-700 focus:outline-none focus:ring-2 focus:ring-indigo-500"
