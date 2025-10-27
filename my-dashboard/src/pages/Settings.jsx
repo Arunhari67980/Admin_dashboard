@@ -145,13 +145,13 @@ const Settings = () => {
                 />
               </label>
             </div>
-            <div className="flex-1">
+            <div className="flex-1 space-y-2">
               <input
                 type="text"
                 name="fullName"
                 value={profile.fullName}
                 onChange={handleProfileChange}
-                className="w-full p-2 bg-gray-700 text-white border border-gray-600 rounded-md focus:outline-none focus:ring-indigo-500"
+                className="w-64 p-2 bg-gray-700 text-white border border-gray-600 rounded-md focus:outline-none focus:ring-indigo-500"
                 placeholder="Full Name"
               />
               <input
@@ -159,7 +159,7 @@ const Settings = () => {
                 name="email"
                 value={profile.email}
                 onChange={handleProfileChange}
-                className="w-full p-2 bg-gray-700 text-white border border-gray-600 rounded-md focus:outline-none focus:ring-indigo-500 mt-2"
+                className="w-64 p-2 bg-gray-700 text-white border border-gray-600 rounded-md focus:outline-none focus:ring-indigo-500"
                 placeholder="Email"
               />
               <input
@@ -167,7 +167,7 @@ const Settings = () => {
                 name="username"
                 value={profile.username}
                 onChange={handleProfileChange}
-                className="w-full p-2 bg-gray-700 text-white border border-gray-600 rounded-md focus:outline-none focus:ring-indigo-500 mt-2"
+                className="w-64 p-2 bg-gray-700 text-white border border-gray-600 rounded-md focus:outline-none focus:ring-indigo-500"
                 placeholder="Username"
               />
             </div>
@@ -187,7 +187,7 @@ const Settings = () => {
         <select
           value={theme}
           onChange={handleThemeChange}
-          className="w-full p-2 bg-gray-700 text-white border border-gray-600 rounded-md focus:outline-none focus:ring-indigo-500"
+          className="w-64 p-2 bg-gray-700 text-white border border-gray-600 rounded-md focus:outline-none focus:ring-indigo-500"
         >
           <option value="dark">Dark Theme</option>
           <option value="light">Light Theme</option>
@@ -280,7 +280,7 @@ const Settings = () => {
             type="file"
             accept=".json"
             onChange={handleImport}
-            className="w-full p-2 bg-gray-700 text-white border border-gray-600 rounded-md focus:outline-none focus:ring-indigo-500"
+            className="w-64 p-2 bg-gray-700 text-white border border-gray-600 rounded-md focus:outline-none focus:ring-indigo-500"
           />
         </div>
       </div>
@@ -295,7 +295,7 @@ const Settings = () => {
               name="password"
               value={security.password}
               onChange={handleSecurityChange}
-              className="w-full p-2 mb-2 bg-gray-700 text-white border border-gray-600 rounded-md focus:outline-none focus:ring-indigo-500"
+              className="w-64 p-2 mb-2 bg-gray-700 text-white border border-gray-600 rounded-md focus:outline-none focus:ring-indigo-500"
               placeholder="New Password"
             />
             <input
@@ -303,7 +303,7 @@ const Settings = () => {
               name="confirmPassword"
               value={security.confirmPassword}
               onChange={handleSecurityChange}
-              className="w-full p-2 mb-4 bg-gray-700 text-white border border-gray-600 rounded-md focus:outline-none focus:ring-indigo-500"
+              className="w-64 p-2 mb-4 bg-gray-700 text-white border border-gray-600 rounded-md focus:outline-none focus:ring-indigo-500"
               placeholder="Confirm Password"
             />
             <div className="flex justify-end space-x-4">
